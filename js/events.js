@@ -75,6 +75,7 @@ function parseEvents()
 			  rowHtml += addRibbon(row);
 			  rowHtml += addLocation(row);
 			  rowHtml += addHistory(row);
+			  rowHtml += addRule3(row);
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
 			  tr.attr("row", i);
 			  if (row[24]=="TRUE")
@@ -206,6 +207,11 @@ function addHistory(row)
 		linkedhist += hist.substring(lastIndex);
 	}
 	return "<td class='history'>"+linkedhist+ "</td>";
+}
+
+function addRule3(row)
+{
+	return "<td>"+row[31]+ "</td>";
 }
 
 function checkImageSize(img)
