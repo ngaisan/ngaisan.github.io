@@ -85,7 +85,7 @@ function parseEvents()
 			  rowHtml += addDate(row);
 			  rowHtml += addNotes(row);
 			  rowHtml += addProofType(row);
-			  rowHtml += addRibbon(row);
+			  rowHtml += addRibbon(row, i==3);
 			  rowHtml += addLocation(row);
 			  rowHtml += addHistory(row);
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
