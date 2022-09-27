@@ -12,19 +12,6 @@ Papa.parse("https://ngaisan.github.io/balls.csv"+"?_="+ (new Date).getTime(), {
 	}
 });
 
-var ribbonMap = new Map();
-Papa.parse("https://ngaisan.github.io/ribbons.csv"+"?_="+ (new Date).getTime(), {
-	header: true,
-	download: true,
-	complete: function(results) {
-		
-		for (var i = 0; i < results.data.length; i++)
-		{
-			ribbonMap.set(results.data[i]['name'], results.data[i]['imageloc']);
-		}
-		parseEvents();
-	}
-});
 
 function parseEvents()
 {
@@ -85,7 +72,7 @@ function parseEvents()
 			  rowHtml += addDate(row);
 			  rowHtml += addNotes(row);
 			  rowHtml += addProofType(row);
-			  rowHtml += addRibbon(row, i==3);
+			  rowHtml += addRibbon(row);
 			  rowHtml += addLocation(row);
 			  rowHtml += addHistory(row);
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
@@ -183,14 +170,9 @@ function addProofType(row)
 {
 	return "<td>"+row[15]+ "</td>";
 }
-function addRibbon(row, first)
+function addRibbon(row)
 {
-	var ribbon = row[16] == "" ? "" : ribbonMap.get(row[16]);
-	if (ribbon == undefined)
-		console.log(row[16]);
-	// Reflow after first ribbon loads to make sure columns line up with header
-	var loaded = first ? " onLoad='loaded()' " : "";
-	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[16]+"' title='"+row[16]+"'"+loaded+"/></td>";
+	return "<td>"+row[16]+ "</td>";
 }
 function addLocation(row)
 {
