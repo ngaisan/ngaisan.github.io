@@ -151,40 +151,40 @@ function addNature(row)
 }
 function addOT(row)
 {
-	return "<td>"+row[23]+ "</td>";
+	return "<td>"+row[12]+ "</td>";
 }
 function addTID(row)
 {
-	return "<td>"+row[24]+ "</td>";
+	return "<td>"+row[13]+ "</td>";
 }
 function addDate(row)
 {
-	return "<td>"+row[25]+ "</td>";
+	return "<td>"+row[14]+ "</td>";
 }
 function addNotes(row)
 {
-	return "<td class='notes'>"+row[30]+ "</td>";
+	return "<td class='notes'>"+row[19]+ "</td>";
 }
 function addProofType(row)
 {
-	return "<td>"+row[26]+ "</td>";
+	return "<td>"+row[15]+ "</td>";
 }
 function addProofName(row)
 {
-	return "<td class='proofName'>"+row[27]+ "</td>";
+	return "<td class='proofName'>"+row[16]+ "</td>";
 }
 function addLocation(row)
 {
 	
-	var wrongGen = row[33] != row[34] ? " class='wrongGen'" : "";
-	var altText = " alt='Current: "+row[33]+" / Original: "+row[34]+"' title='Current: "+row[33]+" / Original: "+row[34]+"'"
-	return "<td"+wrongGen+altText+">"+row[31]+ "</td>";
+	var wrongGen = row[22] != row[23] ? " class='wrongGen'" : "";
+	var altText = " alt='Current: "+row[22]+" / Original: "+row[23]+"' title='Current: "+row[22]+" / Original: "+row[23]+"'"
+	return "<td"+wrongGen+altText+">"+row[20]+ "</td>";
 }
 function addHistory(row)
 {
-	const links = row[28] == "" ? [] : row[28].split(";");
-	const trades = (row[29].match(/>/g) || []);
-	const hist = row[29];
+	const links = row[17] == "" ? [] : row[17].split(";");
+	const trades = (row[18].match(/>/g) || []);
+	const hist = row[18];
 	var linkedhist = "";
 	var lastIndex = 0;
 	if (hist == "")
@@ -193,7 +193,7 @@ function addHistory(row)
 	{
 		for (var i = 0; i < links.length && i < trades.length; i++)
 		{
-			const index = row[29].indexOf(">", lastIndex);
+			const index = row[18].indexOf(">", lastIndex);
 			if (index == -1)
 				break;
 			var href = "<a href='" + links[i] + "' target='_blank'>&gt</a>";
