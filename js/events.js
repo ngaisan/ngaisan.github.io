@@ -183,7 +183,7 @@ function addProofType(row)
 {
 	return "<td>"+row[15]+ "</td>";
 }
-function addRibbon(row)
+function addRibbon(row, first)
 {
 	var ribbon = row[16] == "" ? "" : ribbonMap.get(row[16]);
 	if (ribbon == undefined)
