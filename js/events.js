@@ -53,7 +53,7 @@ function parseEvents()
 			//d3.event.preventDefault();
 			for (var i = 3; i < results.data.length; i++) {
 			  var row = results.data[i];
-			  if (row.length <= 1 || row[4] == "" || row[37] == "TRUE")
+			  if (row.length <= 1 || row[4] == "" || row[26] == "TRUE")
 				  continue;
 
 			  var rowHtml = "<td>"+(i-2)+"</td>";
@@ -76,14 +76,14 @@ function parseEvents()
 			  rowHtml += addHistory(row);
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
 			  tr.attr("row", i);
-			  if (row[35]=="TRUE")
+			  if (row[24]=="TRUE")
 				tr.classed("personal", true);
-			  else if (row[36]=="TRUE") // Keep these mutually exclusive
+			  else if (row[25]=="TRUE") // Keep these mutually exclusive
 				tr.classed("traded", true);
 			  else
 			  {
 				  tr.classed("ft", true);
-				  if (row[38]=="TRUE") // No need to mark as a multiple if it's traded or personal
+				  if (row[27]=="TRUE") // No need to mark as a multiple if it's traded or personal
 					tr.classed("multiple", true);
 			  }
 			  
