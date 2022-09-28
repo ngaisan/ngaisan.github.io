@@ -64,7 +64,7 @@ table, th, td {
 }
 td, th {
   border: 1px solid #ddd;
-  padding: 2px;
+  padding: 5px;
 }
 tr.even{background-color: #f2f2f2;}
 tr:hover {background-color: #ddd;}
@@ -144,7 +144,7 @@ tr td.wrongGen
 }
 .dark a:visited, .dark a:hover, .dark a:active
 {
-	color:#6d4b8d;
+	color: white;
 }
 .dark .personal a:visited, .dark .personal a:hover, .dark .personal a:active
 {
