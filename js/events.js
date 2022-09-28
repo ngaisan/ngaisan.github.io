@@ -92,14 +92,14 @@ function parseEvents()
 			 
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
 			  tr.attr("row", i);
-			  if (row[24]=="TRUE")
+			  if (row[29]=="TRUE")
 				tr.classed("personal", true);
-			  else if (row[25]=="TRUE") // Keep these mutually exclusive
+			  else if (row[30]=="TRUE") // Keep these mutually exclusive
 				tr.classed("traded", true);
 			  else
 			  {
 				  tr.classed("ft", true);
-				  if (row[27]=="TRUE") // No need to mark as a multiple if it's traded or personal
+				  if (row[32]=="TRUE") // No need to mark as a multiple if it's traded or personal
 					tr.classed("multiple", true);
 			  }
 			  
@@ -179,7 +179,7 @@ function addDate(row)
 }
 function addNotes(row)
 {
-	return "<td class='notes'>"+row[19]+ "</td>";
+	return "<td class='notes'>"+row[20]+ "</td>";
 }
 function addProofType(row)
 {
@@ -187,12 +187,12 @@ function addProofType(row)
 }
 function addRibbon(row, first)
 {
-	var ribbon = row[16] == "" ? "" : ribbonMap.get(row[16]);
+	var ribbon = row[17] == "" ? "" : ribbonMap.get(row[17]);
 	if (ribbon == undefined)
-		console.log(row[16]);
+		console.log(row[17]);
 	// Reflow after first ball loads to make sure columns line up with header
 	var loaded = first ? " onLoad='loaded()' " : "";
-	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[16]+"' title='"+row[16]+"'"+loaded+"/></td>";
+	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[17]+"' title='"+row[17]+"'"+loaded+"/></td>";
 }
 //function addRibbon(row)
 //{
@@ -201,15 +201,15 @@ function addRibbon(row, first)
 function addLocation(row)
 {
 	
-	var wrongGen = row[22] != row[23] ? " class='wrongGen'" : "";
-	var altText = " alt='Current: "+row[22]+" / Original: "+row[23]+"' title='Current: "+row[22]+" / Original: "+row[23]+"'"
-	return "<td"+wrongGen+altText+">"+row[20]+ "</td>";
+	var wrongGen = row[27] != row[28] ? " class='wrongGen'" : "";
+	var altText = " alt='Current: "+row[27]+" / Original: "+row[28]+"' title='Current: "+row[27]+" / Original: "+row[28]+"'"
+	return "<td"+wrongGen+altText+">"+row[21]+ "</td>";
 }
 function addHistory(row)
 {
-	const links = row[17] == "" ? [] : row[17].split(";");
-	const trades = (row[18].match(/>/g) || []);
-	const hist = row[18];
+	const links = row[18] == "" ? [] : row[18].split(";");
+	const trades = (row[19].match(/>/g) || []);
+	const hist = row[19];
 	var linkedhist = "";
 	var lastIndex = 0;
 	if (hist == "")
@@ -218,7 +218,7 @@ function addHistory(row)
 	{
 		for (var i = 0; i < links.length && i < trades.length; i++)
 		{
-			const index = row[18].indexOf(">", lastIndex);
+			const index = row[19].indexOf(">", lastIndex);
 			if (index == -1)
 				break;
 			var href = "<a href='" + links[i] + "' target='_blank'>&gt</a>";
@@ -234,7 +234,7 @@ function addHistory(row)
 
 function addRule3(row)
 {
-	return "<td>"+row[31]+ "</td>";
+	return "<td>"+row[26]+ "</td>";
 }
 
 function checkImageSize(img)
