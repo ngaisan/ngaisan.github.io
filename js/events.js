@@ -12,6 +12,20 @@ Papa.parse("https://ngaisan.github.io/balls.csv"+"?_="+ (new Date).getTime(), {
 	}
 });
 
+var ribbonMap = new Map();
+Papa.parse("https://ngaisan.github.io/ribbons.csv"+"?_="+ (new Date).getTime(), {
+	header: true,
+	download: true,
+	complete: function(results) {
+		
+		for (var i = 0; i < results.data.length; i++)
+		{
+			ribbonMap.set(results.data[i]['name'], results.data[i]['imageloc']);
+		}
+		parseEvents();
+	}
+});
+
 
 function parseEvents()
 {
@@ -54,7 +68,7 @@ function parseEvents()
 			//d3.event.preventDefault();
 			for (var i = 3; i < results.data.length; i++) {
 			  var row = results.data[i];
-			  if (row.length <= 1 || row[4] == "" || row[26] == "TRUE")
+			  if (row.length <= 1 || row[4] == "" || row[31] == "TRUE")
 				  continue;
 
 			  var rowHtml = "<td>"+(i-2)+"</td>";
@@ -72,7 +86,7 @@ function parseEvents()
 			  rowHtml += addDate(row);
 			  rowHtml += addNotes(row);
 			  rowHtml += addProofType(row);
-			  rowHtml += addRibbon(row);
+			  rowHtml += addRibbon(row, i==3);
 			  rowHtml += addLocation(row);
 			  rowHtml += addHistory(row);
 			  rowHtml += addRule3(row);
@@ -171,10 +185,19 @@ function addProofType(row)
 {
 	return "<td>"+row[15]+ "</td>";
 }
-function addRibbon(row)
+function addRibbon(row, first)
 {
-	return "<td>"+row[16]+ "</td>";
+	var ribbon = row[16] == "" ? "" : ribbonMap.get(row[16]);
+	if (ribbon == undefined)
+		console.log(row[16]);
+	// Reflow after first ball loads to make sure columns line up with header
+	var loaded = first ? " onLoad='loaded()' " : "";
+	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[16]+"' title='"+row[16]+"'"+loaded+"/></td>";
 }
+//function addRibbon(row)
+//{
+//	return "<td>"+row[16]+ "</td>";
+//}
 function addLocation(row)
 {
 	
