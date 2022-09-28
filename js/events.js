@@ -68,28 +68,28 @@ function parseEvents()
 			//d3.event.preventDefault();
 			for (var i = 3; i < results.data.length; i++) {
 			  var row = results.data[i];
-			  if (row.length <= 1 || row[4] == "" || row[31] == "TRUE")
+			  if (row.length <= 1 || row[4] == "" || row[29] == "TRUE")
 				  continue;
 
 			  var rowHtml = "<td>"+(i-2)+"</td>";
 			  rowHtml += addTag(row);
-			  rowHtml += addEvent(row);
 			  rowHtml += addPokemon(row,i);
 			  rowHtml += addShiny(row);
 			  rowHtml += addBall(row, i==3);
-			  rowHtml += addLevel(row);
+			  rowHtml += addEvent(row);
 			  rowHtml += addGender(row);
-			  rowHtml += addAbility(row);
-			  rowHtml += addNature(row);
+			  rowHtml += addLevel(row);
 			  rowHtml += addOT(row);
 			  rowHtml += addTID(row);
+			  rowHtml += addAbility(row);
+			  rowHtml += addNature(row);
 			  rowHtml += addDate(row);
 			  rowHtml += addNotes(row);
 			  rowHtml += addProofType(row);
 			  rowHtml += addRibbon(row, i==3);
 			  rowHtml += addLocation(row);
 			  rowHtml += addHistory(row);
-			  rowHtml += addRule3(row);
+			 
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
 			  tr.attr("row", i);
 			  if (row[24]=="TRUE")
@@ -167,7 +167,7 @@ function addNature(row)
 }
 function addOT(row)
 {
-	return "<td>"+row[12]+ "</td>";
+	return "<td class='ot'>"+row[12]+ "</td>";
 }
 function addTID(row)
 {
