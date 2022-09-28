@@ -22,7 +22,7 @@ Papa.parse("https://ngaisan.github.io/ribbons.csv"+"?_="+ (new Date).getTime(), 
 		{
 			ribbonMap.set(results.data[i]['name'], results.data[i]['imageloc']);
 		}
-		parseEvents();
+		
 	}
 });
 
