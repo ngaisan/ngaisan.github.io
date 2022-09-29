@@ -118,7 +118,15 @@ tr.personal
 }
 .dark tr.personal
 {
-	background-color: #4B51B3 !important; 
+	background-color: #450606 !important; 
+}
+.dark tr.personal.even
+{
+  background-color: #560C0C !important; 
+}
+.dark tr.personal:hover 
+{
+  background-color: #350F0F !important;
 }
 tr.traded
 {
@@ -148,7 +156,7 @@ tr td.wrongGen
 }
 .dark .personal a:visited, .dark .personal a:hover, .dark .personal a:active
 {
-	color: darkcyan;
+	color: white;
 }
 .dark .traded a:visited, .dark .traded a:hover, .dark .traded a:active
 {
