@@ -93,7 +93,7 @@ thead tr th {
 img {
   vertical-align: middle;
 }
-img.pokemon {
+img.pokemon{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -109,7 +109,7 @@ div.msikma {
 }
 .event, .pokemon, .notes, .history, .proofName
 {
-	font-size: 0.75em;
+	font-size: 0.8em;
 }
 
 tr.personal 
