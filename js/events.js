@@ -26,6 +26,19 @@ Papa.parse("https://ngaisan.github.io/ribbons.csv"+"?_="+ (new Date).getTime(), 
 	}
 });
 
+var iconMap = new Map();
+Papa.parse("https://ngaisan.github.io/games.csv"+"?_="+ (new Date).getTime(), {
+	header: true,
+	download: true,
+	complete: function(results) {
+		
+		for (var i = 0; i < results.data.length; i++)
+		{
+			iconMap.set(results.data[i]['name'], results.data[i]['imageloc']);
+		}
+		
+	}
+});
 
 function parseEvents()
 {
@@ -86,8 +99,8 @@ function parseEvents()
 			  rowHtml += addDate(row);
 			  rowHtml += addNotes(row);
 			  rowHtml += addProofType(row);
-			  rowHtml += addRibbon(row, i==3);
-			  rowHtml += addLocation(row);
+			  rowHtml += addRibbon(row);
+			  rowHtml += addIcon(row);
 			  rowHtml += addHistory(row);
 			 
 			  var tr = d3.select("tbody").insert("tr").html(rowHtml);
@@ -134,7 +147,7 @@ function addPokemon(row, i)
 		onError = "";
 	}
 	
-	return "<td class='pokemon'><div><img class='pokemon' data-pokemon='"+pokemon+"' data-shiny='"+row[6]+"' src='"+address+"' onload='checkImageSize(this)' onerror='"+onError+"' height='30'/></div>"+row[4]+ "</td>";
+	return "<td class='pokemon'><div><img class='pokemon' data-pokemon='"+pokemon+"' data-shiny='"+row[6]+"' src='"+address+"' onload='checkImageSize(this)' onerror='"+onError+"' height='40'/></div>"+row[4]+ "</td>";
 }
 function addShiny(row)
 {
@@ -187,23 +200,29 @@ function addProofType(row)
 }
 function addRibbon(row, first)
 {
+
+	
 	var ribbon = row[17] == "" ? "" : ribbonMap.get(row[17]);
 	if (ribbon == undefined)
 		console.log(row[17]);
-	// Reflow after first ball loads to make sure columns line up with header
+	 //Reflow after first ball loads to make sure columns line up with header
 	var loaded = first ? " onLoad='loaded()' " : "";
-	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[17]+"' title='"+row[17]+"'"+loaded+"/></td>";
+	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[17]+"' title='"+row[17]+"'"+loaded+"' height='50'/></td>";
 }
 //function addRibbon(row)
 //{
 //	return "<td>"+row[16]+ "</td>";
 //}
-function addLocation(row)
+function addIcon(row, first)
 {
-	
 	var wrongGen = row[27] != row[28] ? " class='wrongGen'" : "";
-	var altText = " alt='Current: "+row[27]+" / Original: "+row[28]+"' title='Current: "+row[27]+" / Original: "+row[28]+"'"
-	return "<td"+wrongGen+altText+">"+row[21]+ "</td>";
+	var icon = row[21] == "" ? "" : iconMap.get(row[21]);
+	if (icon == undefined)
+		console.log(row[21]);
+	 //Reflow after first ball loads to make sure columns line up with header
+	var loaded = first ? " onLoad='loaded()' " : "";
+	return "<td"+wrongGen+"><img class='icon' src='"+icon+"' alt='"+row[21]+"' title='"+row[17]+"'"+loaded+"' height='50'/></td>";
+	
 }
 function addHistory(row)
 {
