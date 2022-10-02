@@ -147,7 +147,7 @@ function addPokemon(row, i)
 		onError = "";
 	}
 	
-	return "<td class='pokemon'><div><img class='pokemon' data-pokemon='"+pokemon+"' data-shiny='"+row[6]+"' src='"+address+"' onload='checkImageSize(this)' onerror='"+onError+"' height='40'/></div>"+row[4]+ "</td>";
+	return "<td class='pokemon'><div><img class='pokemon' data-pokemon='"+pokemon+"' data-shiny='"+row[6]+"' src='"+address+"' onload='checkImageSize(this)' onerror='"+onError+"' height='45'/></div>"+row[4]+ "</td>";
 }
 function addShiny(row)
 {
@@ -207,7 +207,7 @@ function addRibbon(row, first)
 		console.log(row[17]);
 	 //Reflow after first ball loads to make sure columns line up with header
 	var loaded = first ? " onLoad='loaded()' " : "";
-	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[17]+"' title='"+row[17]+"'"+loaded+"' height='50'/></td>";
+	return "<td><img class='ribbon' src='"+ribbon+"' alt='"+row[17]+"' title='"+row[17]+"'"+loaded+"' height='45'/></td>";
 }
 //function addRibbon(row)
 //{
@@ -221,7 +221,7 @@ function addIcon(row, first)
 		console.log(row[21]);
 	 //Reflow after first ball loads to make sure columns line up with header
 	var loaded = first ? " onLoad='loaded()' " : "";
-	return "<td"+wrongGen+"><img class='icon' src='"+icon+"' alt='"+row[21]+"' title='"+row[17]+"'"+loaded+"' height='50'/></td>";
+	return "<td"+wrongGen+"><img class='icon' src='"+icon+"' alt='"+row[21]+"' title='"+row[21]+"'"+loaded+"' height='50'/></td>";
 	
 }
 function addHistory(row)
